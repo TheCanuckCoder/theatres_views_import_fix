@@ -36,7 +36,7 @@ function drush_views_fix_import_export_views($view_name = '') {
 
     drush_log(dt('The view "@view_name" has been exported to "@path".', array(
       '@view_name' => $view_name,
-      '@path' => VIEWS_IMPORT_DIR . '/' . $view_name . '.inc',
+      '@path' => VIEWS_FIX_IMPORT_DIR . '/' . $view_name . '.inc',
     )), 'ok');
   }
 }
@@ -50,5 +50,5 @@ function drush_views_fix_import_export_views($view_name = '') {
 function _views_fix_import_export_view($view) {
   $file_name = $view->name . '.inc';
   $export = "<?php \n" . views_fix_export_view($view);
-  file_put_contents(VIEWS_IMPORT_DIR . '/' . $file_name, $export);
+  file_put_contents(VIEWS_FIX_IMPORT_DIR . '/' . $file_name, $export);
 }

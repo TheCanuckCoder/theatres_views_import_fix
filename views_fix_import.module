@@ -4,7 +4,7 @@
  * Views Import.
  */
 
-define('VIEWS_IMPORT_DIR', 'sites/default/files');
+define('VIEWS_FIX_IMPORT_DIR', 'sites/default/files');
 
 /**
  * Implements hook_views_api().
