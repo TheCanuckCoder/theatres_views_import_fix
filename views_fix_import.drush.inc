@@ -1,21 +1,21 @@
 <?php
 /**
  * @file
- * Drush commands for views_import module.
+ * Drush commands for views_fix_import module.
  *
  * Command to export includes files to store Views definitions on the disk.
  */
 
-include_once 'views_import.drush.inc';
+include_once 'views_fix_import.drush.inc';
 
 /**
- * Callback for views_import_export_views command.
+ * Callback for views_fix_import_export_views command.
  *
  * @param string $view_name
  *   String containing the name of the view to export.
  */
-function drush_views_import_export_views($view_name = '') {
-  $views = views_get_all_views();
+function drush_views_fix_import_export_views($view_name = '') {
+  $views = views_fix_get_all_views();
 
   if (empty($view_name) && !drush_get_option('all')) {
     return drush_set_error(dt('No view name given, nothing to do :('));
@@ -32,7 +32,7 @@ function drush_views_import_export_views($view_name = '') {
       )));
     }
 
-    _views_import_export_view($views[$view_name]);
+    _views_fix_import_export_view($views[$view_name]);
 
     drush_log(dt('The view "@view_name" has been exported to "@path".', array(
       '@view_name' => $view_name,
@@ -47,8 +47,8 @@ function drush_views_import_export_views($view_name = '') {
  * @param object $view
  *   The view object to export.
  */
-function _views_import_export_view($view) {
+function _views_fix_import_export_view($view) {
   $file_name = $view->name . '.inc';
-  $export = "<?php \n" . views_export_view($view);
+  $export = "<?php \n" . views_fix_export_view($view);
   file_put_contents(VIEWS_IMPORT_DIR . '/' . $file_name, $export);
 }

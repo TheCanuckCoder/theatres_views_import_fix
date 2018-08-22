@@ -1,6 +1,6 @@
 <?php
 /**
- * @file views_import.views_default.inc
+ * @file views_fix_import.views_default.inc
  */
 
 /**
@@ -11,7 +11,7 @@
  *
  * @return mixed
  */
-function _views_import_fetch_view($uri) {
+function _views_fix_import_fetch_view($uri) {
   $view = NULL;
   include $uri;
   if ($view && isset($view->name)) {
@@ -27,14 +27,14 @@ function _views_import_fetch_view($uri) {
  *
  * @return array
  */
-function views_import_views_default_views() {
+function views_fix_import_views_default_views() {
   $files = file_scan_directory(VIEWS_IMPORT_DIR, '/\.inc$/', array('recurse' => FALSE));
 
   $views = array();
   foreach ($files as $file) {
-    $view = _views_import_fetch_view($file->uri);
+    $view = _views_fix_import_fetch_view($file->uri);
     if ($view) {
-      $view->tag = 'views_import';
+      $view->tag = 'views_fix_import';
       $views[$view->name] = $view;
     }
   }
